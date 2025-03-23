@@ -14,6 +14,7 @@ class NoteCubit extends Cubit<NoteState> {
     try{
       List<NoteModel> data=[];
       data=HiveHelper.getNotes();
+      print(data.length);
       emit(NoteDone(data));
     }
     catch(e){

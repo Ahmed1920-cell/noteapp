@@ -7,8 +7,13 @@ class HiveHelper{
   static Future<void> intil()async{
     mybox=await Hive.openBox<NoteModel>(note);
   }
-  static Future<void> addNote(NoteModel value) async{
-    await mybox.add(value);
+  static Future<void> addNote(NoteModel value) async {
+    try {
+      await mybox.add(value);
+      print("Data Added Successfully: ${value.title}");
+    } catch (e) {
+      print("Error Adding Data: $e");
+    }
   }
   static Future<void> deleteNote(int index) async{
     await mybox.deleteAt(index);

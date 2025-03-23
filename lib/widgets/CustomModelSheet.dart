@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:noteapp/controller/note_cubit.dart';
 import 'package:noteapp/model/NoteModel.dart';
 import 'package:noteapp/widgets/CustomButton.dart';
 import 'package:noteapp/widgets/CustomTextField.dart';
@@ -43,6 +45,7 @@ TextEditingController subtitle=TextEditingController();
                   if (form_key.currentState!.validate()) {
                     NoteModel note=NoteModel(title: title.text, decribtion: subtitle.text,
                         date: DateFormat.yMMMEd().format(DateTime.now()));
+                    BlocProvider.of<NoteCubit>(context).addNote(note);
                     form_key.currentState!.save();
                     Navigator.pop(context);
                   } else {
